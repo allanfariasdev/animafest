@@ -69,21 +69,47 @@ document.addEventListener('keydown', event => { if (event.key === 'Escape') clos
 
 document.querySelector('#quote-form').addEventListener('submit', event => {
   event.preventDefault();
-  if (!selected.size) { notify('Escolha pelo menos um brinquedo'); return; }
+
+  if (!selected.size) {
+    notify('Escolha pelo menos um brinquedo');
+    return;
+  }
+
   const name = document.querySelector('#customer-name').value.trim();
   const dateValue = document.querySelector('#event-date').value;
   const place = document.querySelector('#event-place').value.trim();
   const notes = document.querySelector('#event-notes').value.trim();
-  const date = new Date(`${dateValue}T12:00:00`).toLocaleDateString('pt-BR');
+
+  const date = new Date(
+    `${dateValue}T12:00:00`
+  ).toLocaleDateString('pt-BR');
+
   const message = [
-    'Olá, Animafest! Gostaria de solicitar um orçamento. 🎉', '',
-    `*Nome:* ${name}`, `*Data da festa:* ${date}`, `*Cidade/Bairro:* ${place}`, '',
-    '*Brinquedos escolhidos:*', ...[...selected].map(item => `• ${item}`),
-    notes ? `\n*Observações:* ${notes}` : '', '',
+    'Olá, Animafest! Gostaria de solicitar um orçamento. 🎉',
+    '',
+    `*Nome:* ${name}`,
+    `*Data da festa:* ${date}`,
+    `*Cidade/Bairro:* ${place}`,
+    '',
+    '*Brinquedos escolhidos:*',
+    ...[...selected].map(item => `• ${item}`),
+    notes ? `\n*Observações:* ${notes}` : '',
+    '',
     'Podem verificar a disponibilidade para mim?'
-  ].filter(Boolean).join('\n');
-  window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
+  ]
+    .filter(Boolean)
+    .join('\n');
+
+const telefone = '554899495377';
+
+window.open(
+  `https://wa.me/${telefone}?text=${encodeURIComponent(message)}`,
+  '_blank',
+  'noopener'
+);
 });
+
+
 
 function notify(message) { toast.textContent = message; toast.classList.add('show'); clearTimeout(window.toastTimer); window.toastTimer = setTimeout(() => toast.classList.remove('show'), 2200); }
 
