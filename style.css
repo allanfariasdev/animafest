@@ -326,14 +326,23 @@ h2 {
 }
 
 .hero-photo {
-    background-color: #138dd3;
-    position: relative;
-    z-index: 2;
-    border: 10px solid #fff;
-    border-radius: 48% 52% 43% 57% / 55% 43% 57% 45%;
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    transform: rotate(2deg)
+    width: 550px;
+    height: 550px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--blue);
+    border: 10px solid var(--yellow);
+    outline: 10px solid var(--red);
+    font-family: "Baloo 2";
+    font-size: .72rem;
+    line-height: .82;
+    color: var(--yellow);
+    transform: rotate(-3deg);
+    text-shadow: 1px 1px 0 var(--navy)
+    
 
 }
 
